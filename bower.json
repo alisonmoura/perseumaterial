@@ -1,0 +1,20 @@
+{
+  "name": "perseumaterial",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Alison Moura <alison.oghino@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.0.0"
+  }
+}
