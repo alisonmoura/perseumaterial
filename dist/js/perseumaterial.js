@@ -1,4 +1,4 @@
-function PerseuDesign() {
+function PerseuMaterial() {
 
     this.toastContainer = undefined;
 
