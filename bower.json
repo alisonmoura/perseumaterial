@@ -1,12 +1,25 @@
 {
   "name": "perseumaterial",
   "description": "",
-  "main": "index.js",
+  "keywords": [
+    "css",
+    "js",
+    "mobile-first",
+    "responsive",
+    "front-end",
+    "framework",
+    "ux",
+    "material",
+    "design"
+  ],
+  "main": [
+    "dist/js/perseumaterial.js",
+    "dist/css/perseumaterial.css"
+  ],
   "authors": [
     "Alison Moura <alison.oghino@gmail.com>"
   ],
   "license": "ISC",
-  "homepage": "",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -15,6 +28,9 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^3.0.0"
-  }
+    "jquery": ">=2.1.1"
+  },
+  "version": "0.0.1",
+  "devDependencies": {},
+  "homepage": "https://github.com/AlisonMoura/perseumaterial"
 }

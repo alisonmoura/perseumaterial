@@ -1,10 +1,12 @@
 <html>
 <head>
   <link rel="stylesheet" href="../dist/css/perseumaterial.css"/>
+  <link rel="stylesheet" href="style.css"/>
   <script src="../dist/js/perseumaterial.js"></script>
 </head>
-<body style="background-color: #009cdf;">
-  <button onclick="new PerseuMaterial().toast('Hello World!',3000);">Click to Toast</button>
+<body style="background-color: #f0e7f2;">
+  <button class="perseu-button" style="margin-left: 45%; margin-top: 100px;" onclick="new PerseuMaterial().toast('Hello World!',3000);">Click to Toast</button>
+  <input type="date" class="perseu-datepicker" onclick="new PerseuMaterial().showDatePickerPopout()"/>
   <div id="perseu-toast">
   </div>
 </body>

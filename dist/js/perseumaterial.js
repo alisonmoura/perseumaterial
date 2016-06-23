@@ -1,4 +1,34 @@
+document.addEventListener('onLoad',function () {
+    var datePickers = document.getElementsByClassName('perseu-datepicker');
+
+    for(var i=0; i<datePickers.length; i++){
+        if(datePickers[i] != undefined){
+            datePickers[i].addEventListener("click", function () {
+                var datePikerPopout = document.createElement('div');
+                datePikerPopout.setAttribute('class','date-picker-popout');
+                document.body.appendChild(datePikerPopout);
+            })
+        }
+    }
+});
+
 function PerseuMaterial() {
+
+    this.showDatePickerPopout = function () {
+        var datePikerPopoutContainer = document.createElement('div');
+        datePikerPopoutContainer.setAttribute('class','date-picker-popout-container');
+        datePikerPopoutContainer.setAttribute('id','datePickerPopoutContainer');
+        datePikerPopoutContainer.addEventListener('click', function () {
+            document.getElementById('datePickerPopoutContainer').remove();
+            document.getElementById('datePickerPopout').remove();
+        });
+        var datePikerPopout = document.createElement('div');
+        datePikerPopout.setAttribute('class','date-picker-popout');
+        datePikerPopout.setAttribute('id','datePickerPopout');
+        // datePikerPopoutContainer.appendChild(datePikerPopout);
+        document.body.appendChild(datePikerPopoutContainer);
+        document.body.appendChild(datePikerPopout);
+    };
 
     this.toastContainer = undefined;
 

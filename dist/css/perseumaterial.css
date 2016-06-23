@@ -6,7 +6,6 @@
     75% {top: 100px;}
     100% {background-color: transparent; color:transparent;top: 100px;}
 }
-
 .perseu-toast{
     color: #FFFFFF;
     background-color: #2c3136;
@@ -21,3 +20,62 @@
 .perseu-toast p{
     margin-top: 12px;
 }
+input[type="date"].perseu-datepicker{
+    border: none;
+    padding: 10px;
+    background: transparent;
+    border-bottom: 1px solid #7a7a7a;
+    color: #7a7a7a;
+}
+input.perseu-datepicker:focus{
+    border: none;
+    border-bottom: 2px solid #009cdf;
+    color: #009cdf;
+}
+input.perseu-datepicker::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    display: none;
+}
+input.perseu-datepicker::-webkit-calendar-picker-indicator {
+    display: none;
+    /*background-color: #7a7a7a;*/
+    /*color: white;*/
+    /*-webkit-border-radius:100%;*/
+    /*-moz-border-radius:100%;*/
+    /*border-radius:100%;*/
+}
+.date-picker-popout-container{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+}
+@keyframes date-picker-popout{
+    0% {
+        opacity: 0;
+        transform: translateY(200px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-30px);
+    }
+    80% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+.date-picker-popout{
+    animation: date-picker-popout .5s;
+    height: 300px;
+    width: 25%;
+    background-color: #000066;
+    position: absolute;
+    top: 50px;
+    left: 35%;
+}
+
+
+

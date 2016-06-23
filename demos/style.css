@@ -1,0 +1,25 @@
+body{
+  padding: 0px;
+  margin: 0px;
+}
+
+.perseu-button{
+  border-radius: 3px;
+  border: none;
+  background-color: #000066;
+  color: white;
+  padding: 10px;
+}
+
+.perseu-button:hover{
+  background-color: #3366cc;
+  /*color: black;*/
+  cursor: pointer;
+}
+
+.perseu-button:active{
+  background-color: #3366cc;
+  /*color: black;*/
+  border: none;
+  cursor: pointer;
+}
