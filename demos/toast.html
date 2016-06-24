@@ -1,13 +1,38 @@
 <html>
 <head>
+  <style>
+    body{
+      background-color: #f0e7f2;
+      padding: 0px;
+      margin: 0px;
+    }
+    .perseu-button{
+      border-radius: 3px;
+      border: none;
+      background-color: #000066;
+      color: white;
+      padding: 10px;
+    }
+    .perseu-button:hover{
+      background-color: #3366cc;
+      cursor: pointer;
+    }
+    .perseu-button:active{
+      background-color: #3366cc;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
   <link rel="stylesheet" href="../dist/css/perseumaterial.css"/>
-  <link rel="stylesheet" href="style.css"/>
   <script src="../dist/js/perseumaterial.js"></script>
+  <meta charset="UTF-8">
+  <title>Perseu Material - Date Picker</title>
 </head>
-<body style="background-color: #f0e7f2;">
-  <button class="perseu-button" style="margin-left: 45%; margin-top: 100px;" onclick="new PerseuMaterial().toast('Hello World!',3000);">Click to Toast</button>
-  <input type="date" class="perseu-datepicker" onclick="new PerseuMaterial().showDatePickerPopout()"/>
-  <div id="perseu-toast">
-  </div>
+<body>
+<div style="width: 100%; height: 100%" align="center">
+  <button class="perseu-button" style="margin-top: 200px" onclick="new PerseuMaterial().toast('Hello World!',3000);">Click to Toast</button>
+</div>
+<div id="perseu-toast">
+</div>
 </body>
 </html>
