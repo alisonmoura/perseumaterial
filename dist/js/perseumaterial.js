@@ -120,7 +120,7 @@ function PerseuDatePicker() {
         td.setAttribute('align','center');
         if(j == today.getDate())
             td.setAttribute('class','today');
-        if(i >= firstDay.getDay()){
+        if(i-1 >= firstDay.getDay()){
             td.appendChild(document.createTextNode(j++));
             td.className += " date-selectable";
         }
