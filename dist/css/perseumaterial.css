@@ -107,16 +107,35 @@ input.perseu-datepicker::-webkit-calendar-picker-indicator {
     width: 80%;
 }
 .date-picker-popout-body > div:first-child {
-    height:50px;
-    line-height: 5;
+    padding-top: 20px;
 }
 .date-picker-popout-body > div:first-child > span{
     font-weight: bold;
 }
+.perseu-datepicker-next-month{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 20px;
+}
+.perseu-datepicker-next-month:hover{
+    background-color: #a7a7a7;
+    cursor: pointer;
+}
+.perseu-datepicker-prev-month{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 20px;
+}
+.perseu-datepicker-prev-month:hover{
+    background-color: #a7a7a7;
+    cursor: pointer;
+}
 .date-picker-popout-body > div:last-child {
     width: 90%;
     float: right;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .date-picker-popout-body > div:last-child > table{
     width: 100%;
