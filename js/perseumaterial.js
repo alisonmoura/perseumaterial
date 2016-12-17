@@ -1,8 +1,8 @@
-function PerseuMaterial() {
+PerseuMaterial = {
 
-    this.toastContainer = undefined;
+    toastContainer: undefined,
 
-    this.toast = function (msg) {
+    toast: function (msg) {
         if(this.toastContainer == undefined){
             this.toastContainer = document.createElement('div');
             this.toastContainer.setAttribute('id', 'toast-container');
@@ -17,9 +17,9 @@ function PerseuMaterial() {
         this.toastContainer.appendChild(toast);
         eleParent = document.getElementById('perseu-toast');
         eleParent.appendChild(this.toastContainer);
-    };
+    },
 
-    this.toast = function (msg,time) {
+    toast: function (msg,time) {
         if(this.toastContainer == undefined){
             this.toastContainer = document.createElement('div');
             this.toastContainer.style.display = 'block';
