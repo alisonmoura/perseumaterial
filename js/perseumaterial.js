@@ -1,48 +1,29 @@
+'use estrict'
+
 PerseuMaterial = {
 
-    toastContainer: undefined,
+    toast: function (msg, time) {
 
-    toast: function (msg) {
-        if(this.toastContainer == undefined){
-            this.toastContainer = document.createElement('div');
-            this.toastContainer.setAttribute('id', 'toast-container');
-            this.toastContainer.style.display = 'block';
-            this.toastContainer.style.width = '50px';
-        }
-        var toast = document.createElement('div');
-        toast.setAttribute('class','toast');
-        var paragraph = document.createElement('p');
-        paragraph.appendChild(document.createTextNode(msg));
-        toast.appendChild(paragraph);
-        this.toastContainer.appendChild(toast);
-        eleParent = document.getElementById('perseu-toast');
-        eleParent.appendChild(this.toastContainer);
-    },
+        if(!time) time = 3000;
 
-    toast: function (msg,time) {
-        if(this.toastContainer == undefined){
-            this.toastContainer = document.createElement('div');
-            this.toastContainer.style.display = 'block';
-            this.toastContainer.style.width = '50px';
-        }
-        var toast = document.createElement('div');
-        toast.setAttribute('class','perseu-toast');
-        toast.style.animation = "perseu-toast " + (parseInt(time)/1000) + "s";
-        var paragraph = document.createElement('p');
-        paragraph.appendChild(document.createTextNode(msg));
-        toast.appendChild(paragraph);
-        this.toastContainer.appendChild(toast);
-        var eleParent = document.getElementById('perseu-toast');
-        eleParent.appendChild(this.toastContainer);
+        var toastContainer = $('<div></div>');
+        toastContainer.css('display', 'block');
+        toastContainer.css('width', '50px');
+        $(toastContainer).appendTo('body')
+
+        var toast = $('<div></div>');
+        toast.addClass('perseu-toast');
+        toast.css('animation', "perseu-toast " + (parseInt(time) / 1000) + "s");
+
+        var paragraph = $('<p></p>');
+        $(paragraph).append(document.createTextNode(msg));
+        $(toast).append(paragraph);
+        $(toastContainer).append(toast);
+
         setTimeout(
             function () {
-                var el = document.getElementById('perseu-toast');
-                var toasts = document.getElementsByClassName('perseu-toast');
-                for(var i = 0; i<toasts.length; i++){
-                    //TODO: check if the element has been really removed
-                    toasts[i].remove();
-                    break;
-                }
+                $(toast).remove();
+                $(toastContainer).remove();
             },
             time);
     }
@@ -50,11 +31,11 @@ PerseuMaterial = {
 
 function PerseuDatePicker(element) {
 
-    var dayOfWeekInitials = ['S','M','T','W','T','F','S'];
-    var dayOfWeekAbbreviations= ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    var dayOfWeek= ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    var dayOfMonthAbbreviations = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var dayOfMonth= ['January','Febuary','March','April','May','June','July','August','September','Octuber','November','December'];
+    var dayOfWeekInitials = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    var dayOfWeekAbbreviations = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var dayOfMonthAbbreviations = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var dayOfMonth = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octuber', 'November', 'December'];
 
     var today = new Date();
     var todayYear = today.getFullYear();
@@ -63,22 +44,22 @@ function PerseuDatePicker(element) {
     var todayDay = today.getDate();
 
     var datePickerBackground = document.createElement('div');
-    datePickerBackground.setAttribute('class','date-picker-background');
-    datePickerBackground.setAttribute('id','datePickerBackground');
+    datePickerBackground.setAttribute('class', 'date-picker-background');
+    datePickerBackground.setAttribute('id', 'datePickerBackground');
     //TODO: assign this function in another place
     datePickerBackground.addEventListener('click', function () {
         document.getElementById('datePickerBackground').remove();
         document.getElementById('datePickerContainer').remove();
     });
     var datePickerContainer = document.createElement('div');
-    datePickerContainer.setAttribute('class','date-picker-container');
-    datePickerContainer.setAttribute('id','datePickerContainer');
+    datePickerContainer.setAttribute('class', 'date-picker-container');
+    datePickerContainer.setAttribute('id', 'datePickerContainer');
 
     var datePickerPopout = document.createElement('div');
-    datePickerPopout.setAttribute('class','date-picker-popout');
-    datePickerPopout.setAttribute('id','datePickerPopout');
-    datePickerPopout.width="40%";
-    datePickerPopout.style.left= (screen.width/2) - ((parseInt(datePickerPopout.width.replace('%',''))*screen.width)/100)/2 + "px";
+    datePickerPopout.setAttribute('class', 'date-picker-popout');
+    datePickerPopout.setAttribute('id', 'datePickerPopout');
+    datePickerPopout.width = "40%";
+    datePickerPopout.style.left = (screen.width / 2) - ((parseInt(datePickerPopout.width.replace('%', '')) * screen.width) / 100) / 2 + "px";
 
 
     function createCalendarHeader(date) {
@@ -89,16 +70,16 @@ function PerseuDatePicker(element) {
         var calendarDay = calendar.getDate();
 
         var datePickerPopoutHeader = document.createElement('div');
-        datePickerPopoutHeader.setAttribute('class','date-picker-popout-header');
+        datePickerPopoutHeader.setAttribute('class', 'date-picker-popout-header');
 
         var year = document.createElement('p');
-        year.setAttribute('class','date-picker-popout-header-year');
+        year.setAttribute('class', 'date-picker-popout-header-year');
         year.appendChild(document.createTextNode(calendarYear));
         datePickerPopoutHeader.appendChild(year);
 
         var day = document.createElement('p');
-        day.setAttribute('class','date-picker-popout-header-day');
-        day.appendChild(document.createTextNode(dayOfWeekAbbreviations[calendarWeek] + ', ' + dayOfMonthAbbreviations[calendarMonth] + ' '+calendarDay));
+        day.setAttribute('class', 'date-picker-popout-header-day');
+        day.appendChild(document.createTextNode(dayOfWeekAbbreviations[calendarWeek] + ', ' + dayOfMonthAbbreviations[calendarMonth] + ' ' + calendarDay));
         datePickerPopoutHeader.appendChild(day);
 
         datePickerPopout.appendChild(datePickerPopoutHeader);
@@ -108,28 +89,28 @@ function PerseuDatePicker(element) {
 
         var calendar = date;
         var calendarYear = calendar.getFullYear();
-        var calendarMonth = calendar.getMonth()+1;
+        var calendarMonth = calendar.getMonth() + 1;
         var calendarWeek = calendar.getDay();
         var calendarDay = calendar.getDate();
 
-        var datePickerPopoutBody= document.createElement('div');
-        datePickerPopoutBody.setAttribute('id','datePickerPopoutBody');
-        datePickerPopoutBody.setAttribute('align','center');
-        datePickerPopoutBody.setAttribute('class','date-picker-popout-body');
+        var datePickerPopoutBody = document.createElement('div');
+        datePickerPopoutBody.setAttribute('id', 'datePickerPopoutBody');
+        datePickerPopoutBody.setAttribute('align', 'center');
+        datePickerPopoutBody.setAttribute('class', 'date-picker-popout-body');
 
         var months = document.createElement('div');
-        months.style.display='flex';
-        months.style.justifyContent='space-around';
+        months.style.display = 'flex';
+        months.style.justifyContent = 'space-around';
 
         var leftArrowSpan = document.createElement('span');
-        if(calendarMonth > 0){
-            leftArrowSpan.setAttribute('class','perseu-datepicker-prev-month');
+        if (calendarMonth > 0) {
+            leftArrowSpan.setAttribute('class', 'perseu-datepicker-prev-month');
             leftArrowSpan.appendChild(document.createTextNode('<'));
-            leftArrowSpan.onclick = function (){
+            leftArrowSpan.onclick = function () {
                 var oldCalendar = document.getElementById('datePickerPopoutBody');
-                if(oldCalendar != null && oldCalendar != undefined) {
+                if (oldCalendar != null && oldCalendar != undefined) {
                     oldCalendar.remove();
-                    var newDate = new Date(calendarYear + "-" + (calendarMonth-1) +"-"+ 1);
+                    var newDate = new Date(calendarYear + "-" + (calendarMonth - 1) + "-" + 1);
                     createCalendarBody(newDate);
                 }
             };
@@ -142,14 +123,14 @@ function PerseuDatePicker(element) {
 
         var rightArrowSpan = document.createElement('span');
         // rightArrowSpan.addEventListener('click', nextMonth(calendarYear,calendarMonth));
-        if(calendarMonth < 11){
-            rightArrowSpan.setAttribute('class','perseu-datepicker-next-month');
+        if (calendarMonth < 11) {
+            rightArrowSpan.setAttribute('class', 'perseu-datepicker-next-month');
             rightArrowSpan.appendChild(document.createTextNode('>'));
-            rightArrowSpan.onclick = function (){
+            rightArrowSpan.onclick = function () {
                 var oldCalendar = document.getElementById('datePickerPopoutBody');
-                if(oldCalendar != null && oldCalendar != undefined) {
+                if (oldCalendar != null && oldCalendar != undefined) {
                     oldCalendar.remove();
-                    var newDate = new Date(calendarYear + "-" + (calendarMonth+1) +"-"+ 1);
+                    var newDate = new Date(calendarYear + "-" + (calendarMonth + 1) + "-" + 1);
                     createCalendarBody(newDate);
                 }
             };
@@ -159,12 +140,12 @@ function PerseuDatePicker(element) {
         datePickerPopoutBody.appendChild(months);
 
         var days = document.createElement('div');
-        var lastDay = new Date(calendarYear, calendarMonth+1, 0).getDate();
+        var lastDay = new Date(calendarYear, calendarMonth + 1, 0).getDate();
         var firstDay = new Date(calendarYear, calendarMonth, 1);
         var table = document.createElement('table');
 
         var thead = document.createElement('thead');
-        for(i=0; i < dayOfWeekInitials.length; i++){
+        for (i = 0; i < dayOfWeekInitials.length; i++) {
             var th = document.createElement('th');
             th.appendChild(document.createTextNode(dayOfWeekInitials[i]));
             thead.appendChild(th);
@@ -173,17 +154,17 @@ function PerseuDatePicker(element) {
 
         var tbody = document.createElement('tbody');
         var row = document.createElement('tr');
-        for(var i=1, j=1; j <= lastDay; i++){
+        for (var i = 1, j = 1; j <= lastDay; i++) {
             var td = document.createElement('td');
-            td.setAttribute('align','center');
-            if(j == today.getDate())
-                td.setAttribute('class','today');
-            if(i-1 >= firstDay.getDay()){
+            td.setAttribute('align', 'center');
+            if (j == today.getDate())
+                td.setAttribute('class', 'today');
+            if (i - 1 >= firstDay.getDay()) {
                 td.appendChild(document.createTextNode(j++));
                 td.className += " date-selectable";
             }
             row.appendChild(td);
-            if(i%7 == 0 || j-1 == lastDay){
+            if (i % 7 == 0 || j - 1 == lastDay) {
                 tbody.appendChild(row);
                 row = document.createElement('tr');
             }
@@ -195,10 +176,10 @@ function PerseuDatePicker(element) {
 
         datePickerPopout.appendChild(datePickerPopoutBody);
 
-        
+
     }
 
-datePickerContainer.appendChild(datePickerPopout);
+    datePickerContainer.appendChild(datePickerPopout);
 
     createCalendarHeader(today);
     createCalendarBody(today);
@@ -206,9 +187,9 @@ datePickerContainer.appendChild(datePickerPopout);
     document.body.appendChild(datePickerBackground);
     document.body.appendChild(datePickerContainer);
 
-    function nextMonth(calendarYear,calendarMonth){
+    function nextMonth(calendarYear, calendarMonth) {
         var oldCalendar = document.getElementById('datePickerPopoutBody');
-        if(oldCalendar != null && oldCalendar != undefined) {
+        if (oldCalendar != null && oldCalendar != undefined) {
             oldCalendar.remove();
             createCalendarBody(new Date(calendarYear + "-" + calendarMonth + 1));
         }
@@ -221,7 +202,7 @@ datePickerContainer.appendChild(datePickerPopout);
     this.selectedDate = undefined;
 
     function selectDate(day) {
-        PerseuDatePicker.selectedDate = new Date(todayYear+"-"+todayMonth+"-"+day);
+        PerseuDatePicker.selectedDate = new Date(todayYear + "-" + todayMonth + "-" + day);
         // for(var i=1; i <= lastDay; i++){
         //
         // }
