@@ -13,10 +13,10 @@
   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
   <script src="../js/perseumaterial.js"></script>
   <meta charset="UTF-8">
-  <title>Perseu Material - Toast</title>
+  <title>Perseu Material - Buttons</title>
 </head>
 
-<body>
+<body class="pm-container">
   <nav class="pm-nav-bar">
     <div class="pm-left">
       <a class="pm-side-nav-toggle"><i class="material-icons">menu</i></a>
@@ -26,8 +26,25 @@
       <a><i class="material-icons">more_vert</i></a>
     </div>
   </nav>
-  <div class="row" align="center">
-    <button class="pm-button rised" style="margin-top: 200px" onclick="PerseuMaterial.toast('Hello World!',3000);">Click to Toast</button>
+  <div class="pm-row" align="center">
+    <h1 class="pm-font">Flat buttons</h1>
+    <div>
+      Default: <button class="pm-button">Flat Button</button>
+    </div>
+    <div>
+      Disabled: <button class="pm-button disabled">Disabled</button>
+    </div>
+    <h1 class="pm-font">Rised buttons</h1>
+    <div>
+      Default: <button class="pm-button rised">Rised Button</button>
+    </div>
+    <div>
+      Disabled: <button class="pm-button rised disabled">Disabled</button>
+    </div>
+  </div>
+  <div class="pm-row" align="center">
+    <h1 class="pm-font">Toast</h1>
+    <button class="pm-button rised" onclick="PerseuMaterial.toast('Hello World!',3000);">Click to Toast</button>
   </div>
 </body>
 

@@ -12,8 +12,8 @@ PerseuMaterial = {
         $(toastContainer).appendTo('body')
 
         var toast = $('<div></div>');
-        toast.addClass('perseu-toast');
-        toast.css('animation', "perseu-toast " + (parseInt(time) / 1000) + "s");
+        toast.addClass('pm-toast');
+        toast.css('animation', "pm-toast " + (parseInt(time) / 1000) + "s");
 
         var paragraph = $('<p></p>');
         $(paragraph).append(document.createTextNode(msg));
