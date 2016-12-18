@@ -1,86 +1,12 @@
 'use estrict'
 
-$(document).ready(function () {
-
-    $('.pm-gallery > figure').hover(
-        function () {
-            if ($(this).children('figcaption').text()) {
-                $(this).children('figcaption').animate({
-                    opacity: 1,
-                    height: "20px",
-                }, 100);
-            }
-        }, function () {
-            if ($(this).children('figcaption').text()) {
-                $(this).children('figcaption').animate({
-                    opacity: 0,
-                    height: "0px",
-                }, 100);
-            }
-        }
-    );
-
-    $('.pm-gallery > figure').click(function () {
-
-        var overflowPanel = $('<div></div>');
-        overflowPanel.css('position', 'absolute');
-        overflowPanel.css('width', '100%');
-        overflowPanel.css('height', '100%');
-        overflowPanel.css('opacity', '0');
-        overflowPanel.css('top', '100%');
-        overflowPanel.css('background-color', 'white');
-
-        var overflowPanelHeader = $('<div></div>');
-        overflowPanelHeader.addClass('pm-nav-bar');
-
-        var left = $('<div></div>');
-        left.addClass('pm-left');
-
-        var closeToggle = $('<a></a>');
-
-        var closeToggleIcon = $('<i></i>');
-        closeToggleIcon.addClass('material-icons');
-        closeToggleIcon.css('font-size', '25pt');
-        closeToggleIcon.append(document.createTextNode('close'));
-
-        closeToggleIcon.click(function () {
-            overflowPanel.animate({
-                top: '100%',
-                opacity: '0'
-            }, 500, function () {
-                overflowPanel.remove();
-            })
-        })
-
-        var imageTitle = $('<a></a>');
-        imageTitle.append(document.createTextNode($(this).children('figcaption').text()));
-        imageTitle.css('font-size', '16pt');
-        imageTitle.css('text-align', 'center');
-        imageTitle.css('margin-left', '50px');
-
-        var image = $('<img></img>');
-        image.attr('src', $(this).children('img').attr('src'));
-        image.css('width', '100%');
-
-        closeToggle.append(closeToggleIcon);
-        left.append(closeToggle);
-        left.append(imageTitle);
-        overflowPanelHeader.append(left);
-        overflowPanel.append(overflowPanelHeader);
-        overflowPanel.append(image);
-
-        overflowPanel.animate({
-            top: '0px',
-            opacity: '1'
-        }, 500)
-
-        $('body').append(overflowPanel);
-    });
+$(document).ready(function() {
+    PerseuMaterial.initGallery();
 })
 
 PerseuMaterial = {
 
-    toast: function (msg, time) {
+    toast: function(msg, time) {
 
         if (!time) time = 3000;
 
@@ -99,11 +25,89 @@ PerseuMaterial = {
         $(toastContainer).append(toast);
 
         setTimeout(
-            function () {
+            function() {
                 $(toast).remove();
                 $(toastContainer).remove();
             },
             time);
+    },
+
+    initGallery: function() {
+        
+        $('.pm-gallery > figure').hover(
+            function() {
+                if ($(this).children('figcaption').text()) {
+                    $(this).children('figcaption').animate({
+                        opacity: 1,
+                        height: "20px",
+                    }, 100);
+                }
+            }, function() {
+                if ($(this).children('figcaption').text()) {
+                    $(this).children('figcaption').animate({
+                        opacity: 0,
+                        height: "0px",
+                    }, 100);
+                }
+            }
+        );
+
+        $('.pm-gallery > figure').click(function() {
+
+            var overflowPanel = $('<div></div>');
+            overflowPanel.css('position', 'absolute');
+            overflowPanel.css('width', '100%');
+            overflowPanel.css('height', '100%');
+            overflowPanel.css('opacity', '0');
+            overflowPanel.css('top', '100%');
+            overflowPanel.css('background-color', 'white');
+
+            var overflowPanelHeader = $('<div></div>');
+            overflowPanelHeader.addClass('pm-nav-bar');
+
+            var left = $('<div></div>');
+            left.addClass('pm-left');
+
+            var closeToggle = $('<a></a>');
+
+            var closeToggleIcon = $('<i></i>');
+            closeToggleIcon.addClass('material-icons');
+            closeToggleIcon.css('font-size', '25pt');
+            closeToggleIcon.append(document.createTextNode('close'));
+
+            closeToggleIcon.click(function() {
+                overflowPanel.animate({
+                    top: '100%',
+                    opacity: '0'
+                }, 500, function() {
+                    overflowPanel.remove();
+                })
+            })
+
+            var imageTitle = $('<a></a>');
+            imageTitle.append(document.createTextNode($(this).children('figcaption').text()));
+            imageTitle.css('font-size', '16pt');
+            imageTitle.css('text-align', 'center');
+            imageTitle.css('margin-left', '50px');
+
+            var image = $('<img></img>');
+            image.attr('src', $(this).children('img').attr('src'));
+            image.css('width', '100%');
+
+            closeToggle.append(closeToggleIcon);
+            left.append(closeToggle);
+            left.append(imageTitle);
+            overflowPanelHeader.append(left);
+            overflowPanel.append(overflowPanelHeader);
+            overflowPanel.append(image);
+
+            overflowPanel.animate({
+                top: '0px',
+                opacity: '1'
+            }, 500)
+
+            $('body').append(overflowPanel);
+        });
     }
 }
 
@@ -125,7 +129,7 @@ function PerseuDatePicker(element) {
     datePickerBackground.setAttribute('class', 'date-picker-background');
     datePickerBackground.setAttribute('id', 'datePickerBackground');
     //TODO: assign this function in another place
-    datePickerBackground.addEventListener('click', function () {
+    datePickerBackground.addEventListener('click', function() {
         document.getElementById('datePickerBackground').remove();
         document.getElementById('datePickerContainer').remove();
     });
@@ -184,7 +188,7 @@ function PerseuDatePicker(element) {
         if (calendarMonth > 0) {
             leftArrowSpan.setAttribute('class', 'perseu-datepicker-prev-month');
             leftArrowSpan.appendChild(document.createTextNode('<'));
-            leftArrowSpan.onclick = function () {
+            leftArrowSpan.onclick = function() {
                 var oldCalendar = document.getElementById('datePickerPopoutBody');
                 if (oldCalendar != null && oldCalendar != undefined) {
                     oldCalendar.remove();
@@ -204,7 +208,7 @@ function PerseuDatePicker(element) {
         if (calendarMonth < 11) {
             rightArrowSpan.setAttribute('class', 'perseu-datepicker-next-month');
             rightArrowSpan.appendChild(document.createTextNode('>'));
-            rightArrowSpan.onclick = function () {
+            rightArrowSpan.onclick = function() {
                 var oldCalendar = document.getElementById('datePickerPopoutBody');
                 if (oldCalendar != null && oldCalendar != undefined) {
                     oldCalendar.remove();
