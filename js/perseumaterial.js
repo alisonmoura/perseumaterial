@@ -1,10 +1,88 @@
 'use estrict'
 
+$(document).ready(function () {
+
+    $('.pm-gallery > figure').hover(
+        function () {
+            if ($(this).children('figcaption').text()) {
+                $(this).children('figcaption').animate({
+                    opacity: 1,
+                    height: "20px",
+                }, 100);
+            }
+        }, function () {
+            if ($(this).children('figcaption').text()) {
+                $(this).children('figcaption').animate({
+                    opacity: 0,
+                    height: "0px",
+                }, 100);
+            }
+        }
+    );
+
+    $('.pm-gallery > figure').click(function () {
+
+        var overflowPanel = $('<div></div>');
+        overflowPanel.css('position', 'absolute');
+        overflowPanel.css('width', '100%');
+        overflowPanel.css('height', '100%');
+        overflowPanel.css('opacity', '0');
+        overflowPanel.css('top', '100%');
+        overflowPanel.css('background-color', 'white');
+
+        var overflowPanelHeader = $('<div></div>');
+        overflowPanelHeader.addClass('pm-nav-bar');
+
+        var left = $('<div></div>');
+        left.addClass('pm-left');
+
+        var closeToggle = $('<a></a>');
+
+        var closeToggleIcon = $('<i></i>');
+        closeToggleIcon.addClass('material-icons');
+        closeToggleIcon.css('font-size', '25pt');
+        closeToggleIcon.append(document.createTextNode('close'));
+
+        closeToggleIcon.click(function () {
+            overflowPanel.animate({
+                top: '100%',
+                opacity: '0'
+            }, 500, function () {
+                overflowPanel.remove();
+            })
+        })
+
+        var imageTitle = $('<a></a>');
+        imageTitle.append(document.createTextNode($(this).children('figcaption').text()));
+        imageTitle.css('font-size', '16pt');
+        imageTitle.css('text-align', 'center');
+        imageTitle.css('margin-left', '50px');
+
+        var image = $('<img></img>');
+        image.attr('src', $(this).children('img').attr('src'));
+        image.css('width', '100%');
+
+        closeToggle.append(closeToggleIcon);
+        left.append(closeToggle);
+        left.append(imageTitle);
+        overflowPanelHeader.append(left);
+        overflowPanel.append(overflowPanelHeader);
+        overflowPanel.append(image);
+
+        overflowPanel.animate({
+            top: '0px',
+            opacity: '1'
+        }, 500)
+
+        $('body').append(overflowPanel);
+    });
+})
+
 PerseuMaterial = {
 
     toast: function (msg, time) {
 
-        if(!time) time = 3000;
+        if (!time) time = 3000;
 
         var toastContainer = $('<div></div>');
         toastContainer.css('display', 'block');

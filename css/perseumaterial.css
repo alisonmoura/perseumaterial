@@ -10,8 +10,6 @@ body{
 .pm-container{
     width: 100%;
     height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
 }
 /* ==================== NAV BAR ==================== */
 .pm-nav-bar{
@@ -34,6 +32,34 @@ body{
 .pm-nav-bar a.pm-brand{
     margin-left: 24px;
     font-size: 14pt;
+}
+/* ==================== GALLERY ==================== */
+.pm-gallery{
+    width: 100%;
+}
+.pm-gallery > figure{
+    position: relative;
+    margin: 5px;
+    padding: 0px;
+    float: left;
+    width: 30%;
+}   
+.pm-gallery > figure > img{
+    width: 100%;
+}
+.pm-gallery > figure > figcaption{
+    opacity: 0;
+    color: white;
+    background-color: rgba(0,0,0,.4);
+    width: 100%;
+    height: 0px;
+    bottom: 0px;
+    position: absolute;
+    padding: 20px 0px;
+    text-align: center;
+}
+.pm-gallery > figure:hover{
+    cursor: pointer;
 }
 /* ==================== PADDING ==================== */
 .pm-padding-10{
