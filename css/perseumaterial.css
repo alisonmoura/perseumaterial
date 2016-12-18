@@ -59,7 +59,7 @@ body{
     text-align: center;
 }
 .pm-gallery > figure:hover{
-    cursor: pointer;
+    cursor: zoom-in;
 }
 /* ==================== PADDING ==================== */
 .pm-padding-10{
